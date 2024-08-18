@@ -13,39 +13,39 @@ MonoBehaviour:
   m_Name: Audio Database
   m_EditorClassIdentifier: 
   _items:
-  - Clip: {fileID: 8300000, guid: 3809733eaf5e24d4c8b71fd6f4bd1431, type: 3}
+  - Clip: {fileID: 8300000, guid: 6252a8e7d05bd08429450feb53709ca4, type: 3}
     Key: BalanceStickThemeMP3
-    FolderPath: MediaFiles\Audio\
-    Name: BalanceStickTheme2.mp3
+    FolderPath: MyAssets\MediaFiles\Audio\
+    Name: Balance stick theme (1).mp3
     Preload: 1
     _id: c62dd184-0eab-4daa-8e52-c0a289ef9d7c
   - Clip: {fileID: 8300000, guid: 4c4d71fa6054822408ba9034a898dd90, type: 3}
     Key: BasketballKicked1MP3
-    FolderPath: MediaFiles\Audio\
+    FolderPath: MyAssets\MediaFiles\Audio\
     Name: BasketballKicked1.mp3
     Preload: 1
     _id: b587932b-c2dd-4708-9ce4-e611e81a37fd
   - Clip: {fileID: 8300000, guid: 6041854b4923652458e5a61d0ea2ccd9, type: 3}
     Key: GameOver1MP3
-    FolderPath: MediaFiles\Audio\
+    FolderPath: MyAssets\MediaFiles\Audio\
     Name: GameOver1.mp3
     Preload: 1
     _id: ff007f72-7590-4c4a-8ada-8006323a675a
   - Clip: {fileID: 8300000, guid: 72a59dccf3a5d524b872f48b46d2414a, type: 3}
     Key: PressingButtonMP3
-    FolderPath: MediaFiles\Audio\
+    FolderPath: MyAssets\MediaFiles\Audio\
     Name: PressingButtonSound2(bubbles).mp3
     Preload: 1
     _id: 60dd881b-0587-4977-b7ca-7f05b8b79e7a
   - Clip: {fileID: 8300000, guid: 8ff5d336fa557eb42a6dce9e904ca706, type: 3}
     Key: Whoosh1MP3
-    FolderPath: MediaFiles\Audio\
+    FolderPath: MyAssets\MediaFiles\Audio\
     Name: Whoosh1.mp3
     Preload: 1
     _id: 50b4034e-5595-489b-8c37-03a76eac883f
   - Clip: {fileID: 8300000, guid: 3befed42f64589e4b8dbe7afe5015535, type: 3}
     Key: Whoosh2MP3
-    FolderPath: MediaFiles\Audio\
+    FolderPath: MyAssets\MediaFiles\Audio\
     Name: Whoosh2.mp3
     Preload: 1
     _id: d7e9c744-eae5-41b3-8533-b93a6b948300
