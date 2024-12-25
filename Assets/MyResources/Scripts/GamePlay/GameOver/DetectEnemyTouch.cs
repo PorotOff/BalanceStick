@@ -1,12 +1,15 @@
-using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DetectEnemyTouch : MonoBehaviour
 {
-    public static Action EnemyTouched;
+    public static UnityEvent OnEnemyTouched = new UnityEvent();
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Enemy") EnemyTouched?.Invoke();
+        if (collision.gameObject.tag == "Enemy")
+        {
+            OnEnemyTouched?.Invoke();
+        }
     }
 }

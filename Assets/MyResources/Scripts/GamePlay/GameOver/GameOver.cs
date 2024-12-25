@@ -1,52 +1,35 @@
 using UnityEngine;
-using YG;
 using Plugins.Audio.Core;
 using Plugins.Audio.Utils;
+using UnityEngine.Events;
 
 public class GameOver : MonoBehaviour
 {
-    private Animator gameOverPanelAnimation;
-    private SourceAudio openGameOverPanelSound;
-    [SerializeField]
-    private ScoreCounter scoreCounter;
-    [SerializeField]
-    private AudioDataProperty clipName;
-    [SerializeField]
-    private SourceAudio backgroundMusic;
+    public static UnityEvent OnGameOver = new UnityEvent();
+    
+    [SerializeField] private AudioDataProperty clipName;
+    [SerializeField] private SourceAudio backgroundMusic;
 
     public static bool IsGameOver = false;
 
-    private void Awake()
+    private void OnEnable()
     {
-        gameOverPanelAnimation = GetComponent<Animator>();
-        openGameOverPanelSound = GetComponent<SourceAudio>();
+        DetectEnemyTouch.OnEnemyTouched.AddListener(LaunchGameOver);
     }
-
-    private void OnEnable() => DetectEnemyTouch.EnemyTouched += LaunchGameOver;
-    private void OnDisable() => DetectEnemyTouch.EnemyTouched -= LaunchGameOver;
+    private void OnDisable()
+    {
+        DetectEnemyTouch.OnEnemyTouched.RemoveListener(LaunchGameOver);
+    }
 
     private void LaunchGameOver()
     {
+        OnGameOver?.Invoke();
+
         if (!IsGameOver)
         {
             backgroundMusic.Stop();
-            openGameOverPanelSound.Play(clipName.Key);
-            gameOverPanelAnimation.SetTrigger("NowIsGameOver");
-            scoreCounter.enabled = false;
-
-            if (ScoreCounter.Score > YandexGame.savesData.playerBestScore)
-            {
-                SaveBestScore();
-            }
 
             IsGameOver = true;
         }
-    }
-    private void SaveBestScore()
-    {
-        ScoreCounter.playerBestScore = ScoreCounter.Score;
-        YandexGame.savesData.playerBestScore = ScoreCounter.playerBestScore;
-        YandexGame.NewLeaderboardScores("TableOfBallanciers", ScoreCounter.playerBestScore);
-        YandexGame.SaveProgress();
     }
 }

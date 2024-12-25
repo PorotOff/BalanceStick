@@ -30,21 +30,23 @@ public class EnemiesActivator : MonoBehaviour
 
     private void OnEnable()
     {
-        DetectTouchForStartGame.playerTouched += ActivateEnemiesActivator;
-        DetectTouchForStartGame.playerTouched += ResetTimer;
+        StartGame.OnGameStarted.AddListener(ActivateEnemiesActivator);
+        StartGame.OnGameStarted.AddListener(ResetTimer);
+
         GetExtraLifeForAD.OnReceivedExtraLife += ActivateEnemiesActivator;
         GetExtraLifeForAD.OnReceivedExtraLife += ResetTimer;
 
-        DetectEnemyTouch.EnemyTouched += DeactivateEnemiesActivator;
+        GameOver.OnGameOver.AddListener(DeactivateEnemiesActivator);
     }
     private void OnDisable()
     {
-        DetectTouchForStartGame.playerTouched -= ActivateEnemiesActivator;
-        DetectTouchForStartGame.playerTouched -= ResetTimer;
+        StartGame.OnGameStarted.RemoveListener(ActivateEnemiesActivator);
+        StartGame.OnGameStarted.RemoveListener(ResetTimer);        
+
         GetExtraLifeForAD.OnReceivedExtraLife -= ActivateEnemiesActivator;
         GetExtraLifeForAD.OnReceivedExtraLife -= ResetTimer;
 
-        DetectEnemyTouch.EnemyTouched -= DeactivateEnemiesActivator;
+        GameOver.OnGameOver.RemoveListener(DeactivateEnemiesActivator);
     }
 
     private void ActivateEnemiesActivator() => isEnemiesActivatorActive = true;
