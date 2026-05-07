@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "BalanceStick.sln"
+    "dotnet.defaultSolution": "BalanceStick.slnx"
 }
