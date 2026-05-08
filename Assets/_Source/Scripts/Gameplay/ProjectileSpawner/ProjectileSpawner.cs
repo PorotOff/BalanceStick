@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class ProjectileSpawner : Spawner<Projectile>
 {
+    // Temp (Убрать SerializeField)
     [SerializeField] private float _minSpawnDelay;
     [SerializeField] private float _maxSpawnDelay;
     [SerializeField] private float _impulcePower;
-
-    // Temp (Убрать SerializeField)
-    [SerializeField] private Transform _handTransform;
+    [SerializeField] private ProjectileConfig _projectileConfig;
+    [SerializeField] private Transform _holdlingTransform;
 
     private CameraBounds _cameraBounds;
 
@@ -27,7 +27,7 @@ public class ProjectileSpawner : Spawner<Projectile>
 
     public void Initialize(Transform handTransform)
     {
-        _handTransform = handTransform;
+        _holdlingTransform = handTransform;
     }
 
     public IEnumerator SpawnCyclic()
@@ -39,7 +39,7 @@ public class ProjectileSpawner : Spawner<Projectile>
 
             Projectile projectile = Spawn();
             projectile.transform.position = _cameraBounds.GetRandomBoundsPosition();
-            projectile.Initialize(_impulcePower, _handTransform.position);
+            projectile.Initialize(_projectileConfig, _impulcePower, _holdlingTransform.position);
         }
     }
 }

@@ -11,11 +11,11 @@ public class ControlBackgroundMusic : MonoBehaviour, IMusicControlable
 
     private void OnEnable()
     {
-        StartGame.OnGameStarted.AddListener(Play);
+        // StartGame.OnGameStarted.AddListener(Play);
     }
     private void OnDisable()
     {
-        StartGame.OnGameStarted.RemoveListener(Play);
+        // StartGame.OnGameStarted.RemoveListener(Play);
     }
 
     public void Play()
