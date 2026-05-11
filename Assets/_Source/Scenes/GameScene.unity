@@ -530,10 +530,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 141196342}
+  - component: {fileID: 141196347}
   - component: {fileID: 141196346}
-  - component: {fileID: 141196345}
-  - component: {fileID: 141196344}
-  - component: {fileID: 141196343}
   m_Layer: 5
   m_Name: ScoreCounter
   m_TagString: Untagged
@@ -561,43 +559,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 700, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &141196343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141196341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f7283226998ad45b9e1a06f0d3d2d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &141196344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141196341}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a11721fe99abce4ca7ad3385f6fc0e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  divideScoreOn: 20
---- !u!114 &141196345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141196341}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df100243e8408cb43bf6659e78ac9031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &141196346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -605,14 +566,30 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141196341}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9a14abeb73480f409f7de340d5bea4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 1
-  multiplicationAngle: 90
-  stick: {fileID: 1773238740}
+  _holdling: {fileID: 1563356028158979154}
+  _multiplicationAngle: 90
+  _countPerMillisecondCommon: 500
+  _countPerMillisecondAtVertical: 200
+  _addableScore: 1
+--- !u!114 &141196347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141196341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445cabac9a58ad44e85c8a1896cce5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterView
+  _scoreCounterText: {fileID: 616498133}
+  _animator: {fileID: 0}
 --- !u!1 &147322293
 GameObject:
   m_ObjectHideFlags: 0
@@ -3366,6 +3343,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a8b4f0711591ca4a929e45faf70604d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameCamera: {fileID: 0}
   hexColors:
   - '#e3e3e3'
   - '#4f4f4f'
@@ -3373,6 +3351,7 @@ MonoBehaviour:
   - '#c1e7c3'
   - '#cccae7'
   - '#e7e4b9'
+  usedHexColors: []
 --- !u!81 &519420038
 AudioListener:
   m_ObjectHideFlags: 0
@@ -3578,7 +3557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 456
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7f8c1e9ee7e54d64c8ebb2b5e4ed87ac, type: 2}
   m_sharedMaterial: {fileID: -3774563390116872782, guid: 7f8c1e9ee7e54d64c8ebb2b5e4ed87ac, type: 2}
@@ -3824,6 +3803,7 @@ GameObject:
   - component: {fileID: 682899004}
   - component: {fileID: 682899005}
   - component: {fileID: 682899006}
+  - component: {fileID: 682899007}
   m_Layer: 5
   m_Name: ScoreCounterTEXT
   m_TagString: Untagged
@@ -3906,9 +3886,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a14abeb73480f409f7de340d5bea4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplier: 1
-  multiplicationAngle: 90
-  stick: {fileID: 1773238740}
+  _holdling: {fileID: 0}
+  _multiplicationAngle: 90
+  _countPerMillisecondCommon: 500
+  _countPerMillisecondAtVertical: 200
+  _addableScore: 1
 --- !u!95 &682899003
 Animator:
   serializedVersion: 7
@@ -3968,6 +3950,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f7283226998ad45b9e1a06f0d3d2d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &682899007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 682898998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445cabac9a58ad44e85c8a1896cce5cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreCounterView
+  _scoreCounterText: {fileID: 0}
+  _animator: {fileID: 0}
 --- !u!1 &704826546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5068,6 +5064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25479d8991813b84da148244bd7f4146, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusicAudioSource: {fileID: 0}
 --- !u!1 &934164300
 GameObject:
   m_ObjectHideFlags: 0
@@ -9576,11 +9573,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1773238740 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3308911912189475299, guid: b6bd6d11745dbbe418c77c4017448d2a, type: 3}
-  m_PrefabInstance: {fileID: 1563356028158979152}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1800471504
 GameObject:
   m_ObjectHideFlags: 0
@@ -10716,7 +10708,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8122666965191782175, guid: b6bd6d11745dbbe418c77c4017448d2a, type: 3}
   m_PrefabInstance: {fileID: 1563356028158979152}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1773238740}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4939b59e09524cc4db60d1567da1b410, type: 3}

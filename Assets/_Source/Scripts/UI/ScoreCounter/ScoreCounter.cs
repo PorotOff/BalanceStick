@@ -1,54 +1,60 @@
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
+[RequireComponent(typeof(ScoreCounterView))]
 public class ScoreCounter : MonoBehaviour
 {
-    public static Action PointAdded;
+    [SerializeField] private Holdling _holdling;
+    [SerializeField] private float _multiplicationAngle = 90f;
+    [SerializeField] private float _countPerMillisecondCommon = 500f;
+    [SerializeField] private float _countPerMillisecondAtVertical = 200f;
+    [SerializeField] private int _addableScore = 1;
 
-    private Text scoreText;
-    private Animator scoreAnimation;
-    [SerializeField]
-    private float multiplier = 1f;
-    private float timer = 0f;
-    private int lastSecond = 0;
-    [SerializeField]
-    private float multiplicationAngle = 90f;
+    private Ticker _ticker;
+    private ScoreCounterView _scoreCounterView;
+
+    private float _countPerMillisecon;
+
     public static int Score { get; private set; }
-    public static int playerBestScore = 0;
 
-    [SerializeField]
-    private GameObject stick;
-
-    private void Awake()
+    private void Update()
     {
-        playerBestScore = PlayerPrefs.GetInt("PlayerBestScore");
-        scoreText = GetComponent<Text>();
-        scoreAnimation = GetComponent<Animator>();
+        _ticker.Work(Time.deltaTime);
     }
 
-    void Update() => CountScore();
-
-    private void CountScore()
+    public void Initialize()
     {
-        multiplier = 1f;
-        scoreAnimation.SetBool("Multiplication", false);
-        float stickAngleZ = stick.transform.eulerAngles.z;
-        if (stickAngleZ >= 360 - multiplicationAngle / 2 || stickAngleZ <= multiplicationAngle / 2)
+        _countPerMillisecon = _countPerMillisecondCommon;
+        _ticker = new Ticker(_countPerMillisecon);    
+
+        Subscribe();
+
+        _ticker.Start();
+    }
+
+    private void Subscribe()
+    {
+        _ticker.Ticked += OnTicked;
+    }
+
+    private void Unsubscribe()
+    {
+        _ticker.Ticked -= OnTicked;
+    }
+
+    private void OnTicked()
+    {    
+        Score += _addableScore;
+        float holdlingZAngle = _holdling.transform.eulerAngles.z;
+
+        if (holdlingZAngle >= 360 - _multiplicationAngle / 2 || holdlingZAngle <= _multiplicationAngle / 2)
         {
-            multiplier = 3f;
-            scoreAnimation.SetBool("Multiplication", true);
+            _countPerMillisecon = _countPerMillisecondAtVertical;
+            _ticker = new Ticker(_countPerMillisecon);
+
+            // _scoreCounterView.SetMultiplicationAnimation();
         }
-        timer += multiplier * Time.deltaTime;
 
-        Score = Mathf.FloorToInt(timer);
-        if (Score != lastSecond)
-        {
-            scoreText.text = Score.ToString();
-
-            lastSecond = Score;
-
-            PointAdded?.Invoke();
-        }
+        _scoreCounterView.DisplayScore(Score);
+        // _scoreCounterView.DisableMultiplicationAnimation();
     }
 }
